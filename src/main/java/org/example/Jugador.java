@@ -53,6 +53,32 @@ public class Jugador {
         System.out.println("Mano de " + nombre + ":");
         mano.forEach(System.out::println);
     }
+    
+    public void mostrarManoVisual() {
+        System.out.println("Mano de " + nombre + ":");
+        if (mano.isEmpty()) {
+            System.out.println("Sin cartas");
+            return;
+        }
+        
+        // Obtener las líneas de cada carta
+        String[] lineasCartas = new String[7];
+        for (int i = 0; i < 7; i++) {
+            lineasCartas[i] = "";
+        }
+        
+        for (Carta carta : mano) {
+            String[] lineasCarta = carta.toVisualString().split("\n");
+            for (int i = 0; i < 7; i++) {
+                lineasCartas[i] += lineasCarta[i] + " ";
+            }
+        }
+        
+        // Imprimir las cartas
+        for (String linea : lineasCartas) {
+            System.out.println(linea);
+        }
+    }
 
     public void limpiarMano() {
         mano.clear();
