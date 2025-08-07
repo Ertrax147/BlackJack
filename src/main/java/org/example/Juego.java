@@ -25,12 +25,12 @@ public class Juego {
         dealer.recibirCarta(mazo.repartirCarta());
         // Mostrar la mano de cada jugador
         for (Jugador jugador : jugadores) {
-            jugador.mostrarMano();
+            jugador.mostrarManoVisual();
             System.out.println("Puntaje: " + jugador.calcularPuntaje());
             System.out.println();
         }
         // Mostrar la mano del dealer
-        dealer.mostrarMano();
+        dealer.mostrarManoVisual();
         System.out.println("Puntaje: " + dealer.calcularPuntaje());
         System.out.println();
         
@@ -51,7 +51,7 @@ public class Juego {
             System.out.println("=== Turno de " + jugador.getNombre() + " ===");
             
             while (jugador.calcularPuntaje() < 21) {
-                jugador.mostrarMano();
+                jugador.mostrarManoVisual();
                 System.out.println("Puntaje actual: " + jugador.calcularPuntaje());
                 System.out.print("¿Quieres pedir carta? (s/n): ");
                 String respuesta = scanner.nextLine().toLowerCase();
@@ -59,7 +59,8 @@ public class Juego {
                 if (respuesta.equals("s") || respuesta.equals("si")) {
                     Carta nuevaCarta = mazo.repartirCarta();
                     jugador.recibirCarta(nuevaCarta);
-                    System.out.println("Nueva carta: " + nuevaCarta);
+                    System.out.println("Nueva carta:");
+                    System.out.println(nuevaCarta.toVisualString());
                     
                     if (jugador.calcularPuntaje() > 21) {
                         System.out.println("¡Te pasaste de 21! Puntaje: " + jugador.calcularPuntaje());
@@ -76,7 +77,7 @@ public class Juego {
     
     public void turnoDealer() {
         System.out.println("=== Turno del Dealer ===");
-        dealer.mostrarMano();
+        dealer.mostrarManoVisual();
         System.out.println("Puntaje actual: " + dealer.calcularPuntaje());
         
         while (dealer.calcularPuntaje() < 17) {
