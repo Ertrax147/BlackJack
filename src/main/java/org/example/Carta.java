@@ -15,6 +15,45 @@ public class Carta {
         return valor;
     }
 
+    public String getSimbolo() {
+        return simbolo;
+    }
+    
+    public String getPinta() {
+        return pinta;
+    }
+    
+    public String toVisualString() {
+        String simboloPinta = "";
+        switch (pinta) {
+            case "Corazones":
+                simboloPinta = "C";
+                break;
+            case "Diamantes":
+                simboloPinta = "D";
+                break;
+            case "Tréboles":
+                simboloPinta = "T";
+                break;
+            case "Picas":
+                simboloPinta = "P";
+                break;
+        }
+        
+        String simboloCarta = simbolo;
+        if (simbolo.length() == 1) {
+            simboloCarta = " " + simbolo;
+        }
+        
+        return "┌─────────┐\n" +
+               "│ " + simboloCarta + "      │\n" +
+               "│         │\n" +
+               "│    " + simboloPinta + "    │\n" +
+               "│         │\n" +
+               "│      " + simboloCarta + " │\n" +
+               "└─────────┘";
+    }
+
     @Override
     public String toString() {
         return "Carta{" +
